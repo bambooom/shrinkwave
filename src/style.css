@@ -1398,13 +1398,13 @@ td.outdated {
 }
 
 /*
- * The pixel font is only crisp when zoom × DPR is an integer, so HiDPI screens
- * always get 1.5 (12px glyphs on a 3× device grid). Width breakpoints below are
- * in viewport px, hence each has a second clause scaled by 1.5 for these screens.
+ * HiDPI screens get a mild 1.15 zoom for legibility (chosen by eye over the
+ * crisper but larger 1.5). Width breakpoints below are in viewport px, hence
+ * each has a second clause scaled by 1.15 for these screens.
  */
 @media (min-resolution: 2dppx) {
   :root {
-    --zoom: 1.5;
+    --zoom: 1.15;
   }
 }
 
@@ -1423,7 +1423,7 @@ td.outdated {
   }
 }
 
-@media (max-width: 820px), (min-resolution: 2dppx) and (max-width: 1230px) {
+@media (max-width: 820px), (min-resolution: 2dppx) and (max-width: 943px) {
   .desktop {
     grid-template-columns: minmax(0, 1fr);
     padding: 10px 10px 56px;
@@ -1462,7 +1462,7 @@ td.outdated {
 }
 
 /* Side panel width (~320–520px): edge-to-edge window and a compact list. */
-@media (max-width: 520px), (min-resolution: 2dppx) and (max-width: 780px) {
+@media (max-width: 520px), (min-resolution: 2dppx) and (max-width: 598px) {
   .desktop {
     padding: 0 0 44px;
   }
@@ -1563,7 +1563,7 @@ td.outdated {
 }
 
 /* Narrowest panels: the selected row's original size lives in the preview meta instead. */
-@media (max-width: 340px), (min-resolution: 2dppx) and (max-width: 510px) {
+@media (max-width: 340px), (min-resolution: 2dppx) and (max-width: 391px) {
   .queue-area:not(.stitch-grid *) .list-view tr {
     grid-template-columns: minmax(0, 1fr) 72px 36px;
   }
