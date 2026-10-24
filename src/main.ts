@@ -766,7 +766,7 @@ function render() {
     ${state.running ? progressDialog(m) : ""}
     ${state.startOpen ? startMenu(m) : ""}
     <div class="taskbar">
-      <button id="start" class="start-button ${state.startOpen ? "pressed" : ""}" aria-expanded="${state.startOpen}">${icons.logo(16)}<span>${m.start}</span></button>
+      <button id="start" class="start-button ${state.startOpen ? "pressed" : ""}" aria-expanded="${state.startOpen}">${icons.brand(16)}<span>${m.start}</span></button>
       <span class="task-button">${toolIcon(state.tool, 16)}<span>${APP_NAME} — ${label}</span></span>
       <div class="tray">
         <label class="tray-language">

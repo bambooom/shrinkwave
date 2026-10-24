@@ -1,3 +1,5 @@
+import { brandPalette, brandRows } from "./brand";
+
 const palette: Record<string, string> = {
   k: "#05020f",
   m: "#ff2a9d",
@@ -9,12 +11,12 @@ const palette: Record<string, string> = {
   w: "#f6efff",
 };
 
-function pixelArt(rows: string[]) {
+function pixelArt(rows: string[], colors = palette) {
   const width = Math.max(...rows.map((row) => row.length));
   let rects = "";
   rows.forEach((row, y) => {
     for (let x = 0; x < row.length; ) {
-      const color = palette[row[x]];
+      const color = colors[row[x]];
       let run = 1;
       while (row[x + run] === row[x]) run++;
       if (color) rects += `<rect x="${x}" y="${y}" width="${run}" height="1" fill="${color}"/>`;
@@ -27,6 +29,7 @@ function pixelArt(rows: string[]) {
 }
 
 export const icons = {
+  brand: pixelArt(brandRows, brandPalette),
   floppy: pixelArt([
     "kkkkkkkkkkkkkkk.",
     "kmmmggggggggmmmk",
@@ -94,23 +97,6 @@ export const icons = {
     "kwmmmmwwwk",
     "kwwwwwwwwk",
     "kkkkkkkkkk",
-  ]),
-  logo: pixelArt([
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "mmmmmmm.ccccccc",
-    "...............",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
-    "yyyyyyy.ppppppp",
   ]),
   vertical: pixelArt([
     ".kkkkkkkkkkkkkk.",
