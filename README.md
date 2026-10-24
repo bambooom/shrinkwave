@@ -49,7 +49,7 @@ npm run site:preview      # serve site-dist/
 
 The manifest is generated per browser from `src/manifest.ts`, since Chrome and Firefox reject each other's side panel and background keys.
 
-The landing page lives in `site/`. Its build zips `dist/` and `dist-firefox/` into `downloads/` and copies `dist/` to `app/` as the live demo; GitHub Actions deploys it to Pages on every push to `main`.
+The landing page lives in `site/`. Its build zips `dist/` and `dist-firefox/` into `downloads/` and copies `dist/` to `app/` as the live demo; GitHub Actions deploys it to Pages on every push to `main`, and publishes a GitHub Release with both zips the first time a new `package.json` version lands there.
 
 ## Third-party licenses
 
@@ -110,7 +110,7 @@ npm run site:preview      # 预览 site-dist/
 
 manifest 由 `src/manifest.ts` 按浏览器分别生成，因为 Chrome 和 Firefox 互相不认对方的侧栏和后台脚本字段。
 
-官网源码在 `site/`。构建时会把 `dist/`、`dist-firefox/` 打包成 zip 放进 `downloads/`，并把 `dist/` 复制到 `app/` 作为在线试用；每次 push 到 `main` 由 GitHub Actions 自动部署到 Pages。
+官网源码在 `site/`。构建时会把 `dist/`、`dist-firefox/` 打包成 zip 放进 `downloads/`，并把 `dist/` 复制到 `app/` 作为在线试用；每次 push 到 `main` 由 GitHub Actions 自动部署到 Pages；`package.json` 的版本号第一次出现在 `main` 上时，还会自动发布一个附带两个 zip 的 GitHub Release。
 
 ## 第三方许可
 

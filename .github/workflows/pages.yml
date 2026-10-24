@@ -29,6 +29,32 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: site-dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: site-dist/downloads/*.zip
+
+  # Publishes a release for package.json's version the first time it reaches main.
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          name: packages
+          path: packages
+      - run: |
+          tag="v$(node -p 'require("./package.json").version')"
+          if gh release view "$tag" > /dev/null 2>&1; then
+            echo "$tag already released"
+          else
+            gh release create "$tag" packages/*.zip --target "$GITHUB_SHA" --title "Shrinkwave $tag" --generate-notes
+          fi
 
   deploy:
     needs: build
