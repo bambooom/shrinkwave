@@ -74,6 +74,8 @@ body {
 }
 
 body {
+  /* Chrome injects `body { font-family: system-ui; font-size: 75% }` into extension pages. */
+  font: inherit;
   background: linear-gradient(180deg, #07031a 0%, #1a0b3d 40%, #4a0f5c 64%, #9c1d6e 72%, var(--night) 72%);
   background-attachment: fixed;
 }
