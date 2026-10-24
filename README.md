@@ -4,7 +4,7 @@
 
 A synthwave-flavored, Windows 98–style browser extension for compressing and stitching images — entirely on your device. Nothing is uploaded.
 
-**[Website, live demo & downloads](https://bambooom.github.io/shrinkwave/)**
+**[Website, live demo & downloads](https://zhuzi.dev/shrinkwave/)**
 
 ## Features
 
@@ -65,7 +65,7 @@ The landing page lives in `site/`. Its build zips `dist/` and `dist-firefox/` in
 
 一个合成波（synthwave）配色、Windows 98 风格的浏览器扩展，用来压缩和拼接图片。所有处理都在本地完成，不上传任何文件。
 
-**[官网 · 在线试用 · 下载](https://bambooom.github.io/shrinkwave/)**
+**[官网 · 在线试用 · 下载](https://zhuzi.dev/shrinkwave/)**
 
 ## 功能
 
