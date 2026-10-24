@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shrinkwave — compress & stitch images locally</title>
+    <meta
+      name="description"
+      content="A synthwave, Windows 98–style browser extension that compresses and stitches images entirely on your device."
+    />
+    <meta name="theme-color" content="#0b0620" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../public/icons/icon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../public/icons/icon-32.png" />
+    <script type="module" src="./main.ts"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true"></div>
+
+    <header class="taskbar">
+      <a class="brand" href="#top"><span data-icon="brand"></span>Shrinkwave</a>
+      <nav>
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#demo" data-i18n="navDemo">Demo</a>
+        <a href="#install" data-i18n="navInstall">Install</a>
+        <a href="https://github.com/bambooom/shrinkwave">GitHub</a>
+      </nav>
+      <select id="locale" aria-label="Language"></select>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <span class="hero-icon" data-icon="brand" data-size="96"></span>
+        <h1 class="logo">SHRINKWAVE</h1>
+        <p class="tagline" data-i18n="tagline"></p>
+        <ul class="chips">
+          <li>WebP · AVIF · JPEG · PNG</li>
+          <li data-i18n="chipLocal"></li>
+          <li>Chrome · Edge · Firefox</li>
+        </ul>
+        <div class="cta">
+          <a class="button primary" href="#install"><span data-i18n="ctaDownload"></span> v{{version}}</a>
+          <a class="button accent" href="#demo" data-i18n="ctaDemo"></a>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <article class="window">
+          <header class="title-bar">
+            <span data-icon="floppy"></span>
+            <span class="title-text">COMPRESS.EXE</span>
+            <span class="title-buttons" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </header>
+          <div class="window-body">
+            <h2 data-i18n="compressTitle"></h2>
+            <p class="lead" data-i18n="compressLead"></p>
+            <ul class="bullets" data-i18n="compressPoints"></ul>
+            <a class="button" href="#demo" data-demo="compress" data-i18n="tryIt"></a>
+          </div>
+        </article>
+
+        <article class="window">
+          <header class="title-bar title-bar-alt">
+            <span data-icon="stitch"></span>
+            <span class="title-text">STITCH.EXE</span>
+            <span class="title-buttons" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </header>
+          <div class="window-body">
+            <h2 data-i18n="stitchTitle"></h2>
+            <p class="lead" data-i18n="stitchLead"></p>
+            <ul class="bullets" data-i18n="stitchPoints"></ul>
+            <a class="button" href="#demo" data-demo="stitch" data-i18n="tryIt"></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="demo" id="demo">
+        <h2 class="section-title" data-i18n="demoTitle"></h2>
+        <div class="window demo-window">
+          <header class="title-bar">
+            <span data-icon="brand"></span>
+            <span class="title-text">SHRINKWAVE.EXE — DEMO</span>
+            <span class="title-buttons" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+          </header>
+          <iframe id="demo-frame" src="app/index.html" title="Shrinkwave demo" allow="clipboard-write" loading="lazy"></iframe>
+          <p class="status-bar" data-i18n="demoNote"></p>
+        </div>
+      </section>
+
+      <section class="install" id="install">
+        <h2 class="section-title" data-i18n="installTitle"></h2>
+        <p class="section-lead" data-i18n="installLead"></p>
+        <div class="downloads">
+          <article class="window">
+            <header class="title-bar">
+              <span data-icon="file"></span>
+              <span class="title-text">CHROME</span>
+            </header>
+            <div class="window-body">
+              <a class="button primary" href="downloads/shrinkwave-chrome-{{version}}.zip" download>
+                <span data-i18n="download"></span> · {{size:chrome}}
+              </a>
+              <ol data-i18n="chromeSteps"></ol>
+              <p class="note" data-i18n="chromeNote"></p>
+            </div>
+          </article>
+
+          <article class="window">
+            <header class="title-bar title-bar-alt">
+              <span data-icon="file"></span>
+              <span class="title-text">EDGE</span>
+            </header>
+            <div class="window-body">
+              <a class="button accent" href="downloads/shrinkwave-chrome-{{version}}.zip" download>
+                <span data-i18n="download"></span> · {{size:chrome}}
+              </a>
+              <ol data-i18n="edgeSteps"></ol>
+              <p class="note" data-i18n="sameAsChrome"></p>
+            </div>
+          </article>
+
+          <article class="window">
+            <header class="title-bar title-bar-fire">
+              <span data-icon="file"></span>
+              <span class="title-text">FIREFOX</span>
+            </header>
+            <div class="window-body">
+              <a class="button fire" href="downloads/shrinkwave-firefox-{{version}}.zip" download>
+                <span data-i18n="download"></span> · {{size:firefox}}
+              </a>
+              <ol data-i18n="firefoxSteps"></ol>
+              <p class="note" data-i18n="firefoxNote"></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="window usage">
+          <header class="title-bar">
+            <span data-icon="folder"></span>
+            <span class="title-text">README.TXT</span>
+          </header>
+          <div class="window-body">
+            <h3 data-i18n="usageTitle"></h3>
+            <ul class="bullets" data-i18n="usage"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p data-i18n="privacy"></p>
+      <p>
+        v{{version}} ·
+        <a href="https://github.com/bambooom/shrinkwave" data-i18n="source"></a> ·
+        <a href="https://github.com/bambooom/shrinkwave#third-party-licenses" data-i18n="licenses"></a>
+      </p>
+    </footer>
+  </body>
+</html>
