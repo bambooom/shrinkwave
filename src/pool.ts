@@ -1,7 +1,7 @@
-import type { Settings, WorkerRequest, WorkerResponse } from "./types";
+import type { CompressResult, Settings, WorkerRequest, WorkerResponse } from "./types";
 
 type Pending = {
-  resolve: (value: { blob: Blob; extension: string }) => void;
+  resolve: (value: CompressResult) => void;
   reject: (reason: Error) => void;
 };
 
@@ -34,7 +34,7 @@ export class CompressionPool {
       settings,
     };
 
-    return new Promise<{ blob: Blob; extension: string }>((resolve, reject) => {
+    return new Promise<CompressResult>((resolve, reject) => {
       this.queue.push({ request, pending: { resolve, reject } });
       this.pump();
     });
@@ -62,7 +62,13 @@ export class CompressionPool {
     this.idle.push(worker);
 
     if (pending) {
-      if (response.ok) pending.resolve({ blob: new Blob([response.output], { type: response.mime }), extension: response.extension });
+      if (response.ok)
+        pending.resolve({
+          blob: new Blob([response.output], { type: response.mime }),
+          extension: response.extension,
+          width: response.width,
+          height: response.height,
+        });
       else pending.reject(new Error(response.error));
     }
     this.pump();
