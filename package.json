@@ -1,13 +1,13 @@
 {
-  "name": "pixel-squoosh-extension",
+  "name": "shrinkwave",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
-    "package:chrome": "npm run build && cd dist && zip -r ../pixel-squoosh-chrome.zip .",
-    "package:firefox": "npm run build && cd dist && zip -r ../pixel-squoosh-firefox.zip ."
+    "package:chrome": "npm run build && cd dist && zip -r ../shrinkwave-chrome.zip .",
+    "package:firefox": "npm run build && cd dist && zip -r ../shrinkwave-firefox.zip ."
   },
   "dependencies": {
     "@jsquash/avif": "^2.1.1",

@@ -1,10 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Pixel Squoosh",
+  "name": "__MSG_extName__",
+  "short_name": "Shrinkwave",
   "version": "0.1.0",
-  "description": "Batch image compression that stays on your device.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "action": {
-    "default_title": "Open Pixel Squoosh"
+    "default_title": "__MSG_actionTitle__"
   },
   "background": {
     "service_worker": "background.js",
@@ -16,7 +18,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "pixel-squoosh@example.com",
+      "id": "shrinkwave@example.com",
       "strict_min_version": "121.0"
     }
   }

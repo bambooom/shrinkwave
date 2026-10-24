@@ -339,7 +339,7 @@ const ja: Messages = {
 
 export const messages: Record<Locale, Messages> = { "zh-CN": zhCN, "zh-TW": zhTW, en, ja };
 
-const STORAGE_KEY = "pixel-tools.locale";
+const STORAGE_KEY = "shrinkwave.locale";
 
 export function detectLocale(): Locale {
   const saved = localStorage.getItem(STORAGE_KEY);

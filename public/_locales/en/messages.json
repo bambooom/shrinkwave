@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Shrinkwave — Image Compressor & Stitcher" },
+  "extDescription": {
+    "message": "Compress, convert, resize and stitch images to WebP, AVIF, JPEG or PNG. Runs entirely on your device — nothing is uploaded."
+  },
+  "actionTitle": { "message": "Open Shrinkwave" }
+}

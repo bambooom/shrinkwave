@@ -12,8 +12,8 @@ type StitchItem = { id: string; file: File; url: string };
 type PreviewMode = "before" | "after";
 type StitchError = { kind: "tooLarge" } | { kind: "failed"; message: string };
 
-const APP_NAME = "Pixel Tools";
-const APP_SLUG = "pixel-tools";
+const APP_NAME = "Shrinkwave";
+const APP_SLUG = "shrinkwave";
 const MAX_STITCH_EDGE = 2048;
 const MAX_CANVAS_EDGE = 16384;
 const formats: OutputFormat[] = ["webp", "avif", "jpeg", "png"];
@@ -23,7 +23,7 @@ const EDGE_MIN = 320;
 const EDGE_STEP = 80;
 // One step past 3840 stands for "no resize" (maxDimension 0).
 const EDGE_ORIGINAL = 3920;
-const SETTINGS_KEY = "pixel-tools.settings";
+const SETTINGS_KEY = "shrinkwave.settings";
 const defaultSettings: Settings = {
   format: "webp",
   quality: 80,
@@ -256,7 +256,7 @@ async function runCompression() {
         job.output = result.blob;
         job.outputUrl = URL.createObjectURL(result.blob);
         job.outputDims = { width: result.width, height: result.height };
-        job.outputName = `${basename(job.file.name)}.pixel.${result.extension}`;
+        job.outputName = `${basename(job.file.name)}.min.${result.extension}`;
         job.outputSettings = settings;
         job.state = "done";
         job.error = undefined;

@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Shrinkwave — 画像圧縮・結合" },
+  "extDescription": {
+    "message": "画像を WebP・AVIF・JPEG・PNG に一括圧縮・変換・リサイズ・結合。すべて端末内で処理し、アップロードは一切ありません。"
+  },
+  "actionTitle": { "message": "Shrinkwave を開く" }
+}

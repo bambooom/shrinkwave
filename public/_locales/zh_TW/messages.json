@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Shrinkwave — 圖片壓縮與拼接" },
+  "extDescription": {
+    "message": "批次壓縮、轉換、縮放和拼接圖片，支援 WebP、AVIF、JPEG、PNG。全部在本機處理，不上傳任何檔案。"
+  },
+  "actionTitle": { "message": "開啟 Shrinkwave" }
+}
