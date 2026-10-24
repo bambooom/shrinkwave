@@ -29,7 +29,7 @@ npm run build
 - **Chrome / Edge**: open `chrome://extensions`, enable Developer mode, click **Load unpacked** and choose `dist/`.
 - **Firefox** (121+): run `npm run build:firefox`, open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on** and choose `dist-firefox/manifest.json`.
 
-Click the toolbar icon to open Shrinkwave in the side panel (sidebar in Firefox). The □ button in its title bar pops it out into a tab.
+Click the toolbar icon to open Shrinkwave in the side panel (sidebar in Firefox). The □ button in its title bar pops it out into a tab, and right-clicking the icon opens Compress or Stitch in a tab directly.
 
 ## Development
 
@@ -83,7 +83,7 @@ npm run build
 - **Chrome / Edge**：打开 `chrome://extensions`，开启「开发者模式」，点击「加载已解压的扩展程序」，选择 `dist/`。
 - **Firefox**（121+）：先运行 `npm run build:firefox`，打开 `about:debugging#/runtime/this-firefox`，点击「临时载入附加组件」，选择 `dist-firefox/manifest.json`。
 
-点击工具栏图标即可在侧边栏（Firefox 为侧栏）打开 Shrinkwave，点标题栏的 □ 按钮可以弹出到标签页。
+点击工具栏图标即可在侧边栏（Firefox 为侧栏）打开 Shrinkwave，点标题栏的 □ 按钮可以弹出到标签页；右键点击图标可以直接在标签页中打开「图片压缩」或「图片拼接」。
 
 ## 开发
 

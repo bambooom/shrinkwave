@@ -29,7 +29,7 @@ export function manifest(browser: Browser, version: string) {
       ...base,
       side_panel: { default_path: "index.html" },
       background: { service_worker: "background.js", type: "module" },
-      permissions: ["downloads", "sidePanel"],
+      permissions: ["downloads", "sidePanel", "contextMenus"],
     };
   }
 
@@ -42,7 +42,7 @@ export function manifest(browser: Browser, version: string) {
       open_at_install: false,
     },
     background: { scripts: ["background.js"], type: "module" },
-    permissions: ["downloads"],
+    permissions: ["downloads", "contextMenus"],
     browser_specific_settings: {
       gecko: { id: "shrinkwave@example.com", strict_min_version: "121.0" },
     },

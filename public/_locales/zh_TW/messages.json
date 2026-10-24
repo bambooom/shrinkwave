@@ -3,5 +3,7 @@
   "extDescription": {
     "message": "批次壓縮、轉換、縮放和拼接圖片，支援 WebP、AVIF、JPEG、PNG。全部在本機處理，不上傳任何檔案。"
   },
-  "actionTitle": { "message": "開啟 Shrinkwave" }
+  "actionTitle": { "message": "開啟 Shrinkwave" },
+  "menuOpenCompress": { "message": "在分頁中開啟 · 圖片壓縮" },
+  "menuOpenStitch": { "message": "在分頁中開啟 · 圖片拼接" }
 }

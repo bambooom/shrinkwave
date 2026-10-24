@@ -3,5 +3,7 @@
   "extDescription": {
     "message": "Compress, convert, resize and stitch images to WebP, AVIF, JPEG or PNG. Runs entirely on your device — nothing is uploaded."
   },
-  "actionTitle": { "message": "Open Shrinkwave" }
+  "actionTitle": { "message": "Open Shrinkwave" },
+  "menuOpenCompress": { "message": "Open in a tab · Compress" },
+  "menuOpenStitch": { "message": "Open in a tab · Stitch" }
 }

@@ -1,4 +1,8 @@
 export type OutputFormat = "avif" | "webp" | "jpeg" | "png";
+export type Tool = "compress" | "stitch";
+
+/** Messages between the app pages and the background script. */
+export type AppMessage = { type: "open-tab"; tool: Tool } | { type: "set-tool"; tool: Tool };
 export type JobState = "queued" | "processing" | "done" | "failed";
 
 export type EffortFormat = Exclude<OutputFormat, "jpeg">;

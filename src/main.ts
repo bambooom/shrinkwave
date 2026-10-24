@@ -4,9 +4,8 @@ import { ditherGradient } from "./dither";
 import { detectLocale, locales, messages, saveLocale, type Locale, type Messages } from "./i18n";
 import { icons } from "./icons";
 import { CompressionPool } from "./pool";
-import type { Dimensions, EffortFormat, ImageJob, OutputFormat, Settings } from "./types";
+import type { AppMessage, Dimensions, EffortFormat, ImageJob, OutputFormat, Settings, Tool } from "./types";
 
-type Tool = "compress" | "stitch";
 type StitchDirection = "vertical" | "horizontal";
 type StitchItem = { id: string; file: File; url: string };
 type PreviewMode = "before" | "after";
@@ -59,6 +58,12 @@ globalThis.chrome?.tabs?.getCurrent?.((tab) => {
   inPanel = !tab;
   render();
 });
+globalThis.chrome?.runtime?.onMessage?.addListener((message: AppMessage) => {
+  if (message?.type !== "set-tool" || state.tool === message.tool) return;
+  state.tool = message.tool;
+  state.startOpen = false;
+  render();
+});
 
 const sunset = ["#7b2ff7", "#b02bd0", "#ff2a9d", "#ff5f73", "#ff9f45", "#ffd23f"];
 const rootStyle = document.documentElement.style;
@@ -68,7 +73,7 @@ rootStyle.setProperty("--dither-banner", ditherGradient([...sunset].reverse(), {
 const pool = new CompressionPool(2);
 const state = {
   locale: detectLocale(),
-  tool: "compress" as Tool,
+  tool: (new URLSearchParams(location.search).get("tool") === "stitch" ? "stitch" : "compress") as Tool,
   startOpen: false,
   jobs: [] as ImageJob[],
   selectedJob: undefined as string | undefined,
@@ -813,7 +818,8 @@ function bind() {
   on("[data-locale]", "click", (element) => setLocale(element.dataset.locale as Locale));
   on<HTMLSelectElement>("#locale", "change", (element) => setLocale(element.value as Locale));
   on("#pop-out", "click", () => {
-    void globalThis.chrome?.runtime?.sendMessage("open-tab");
+    const message: AppMessage = { type: "open-tab", tool: state.tool };
+    void globalThis.chrome?.runtime?.sendMessage(message);
   });
   on("#start", "click", () => {
     state.startOpen = !state.startOpen;

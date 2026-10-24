@@ -3,5 +3,7 @@
   "extDescription": {
     "message": "批量压缩、转换、缩放和拼接图片，支持 WebP、AVIF、JPEG、PNG。全部在本地处理，不上传任何文件。"
   },
-  "actionTitle": { "message": "打开 Shrinkwave" }
+  "actionTitle": { "message": "打开 Shrinkwave" },
+  "menuOpenCompress": { "message": "在标签页中打开 · 图片压缩" },
+  "menuOpenStitch": { "message": "在标签页中打开 · 图片拼接" }
 }
