@@ -4,6 +4,8 @@
 
 A synthwave-flavored, Windows 98–style browser extension for compressing and stitching images — entirely on your device. Nothing is uploaded.
 
+**[Website, live demo & downloads](https://bambooom.github.io/shrinkwave/)**
+
 ## Features
 
 - **Compress & convert** to WebP, AVIF, JPEG or PNG (oxipng-optimized), in batches
@@ -40,9 +42,14 @@ npm run build:firefox     # type-check + Firefox build to dist-firefox/
 npm run package:chrome    # build and zip to shrinkwave-chrome.zip
 npm run package:firefox   # build and zip to shrinkwave-firefox.zip
 npm run icons             # regenerate public/icons/ from src/brand.ts
+npm run site              # build both extensions + the landing page to site-dist/
+npm run site:dev          # landing page dev server (needs dist/ for the demo)
+npm run site:preview      # serve site-dist/
 ```
 
 The manifest is generated per browser from `src/manifest.ts`, since Chrome and Firefox reject each other's side panel and background keys.
+
+The landing page lives in `site/`. Its build zips `dist/` and `dist-firefox/` into `downloads/` and copies `dist/` to `app/` as the live demo; GitHub Actions deploys it to Pages on every push to `main`.
 
 ## Third-party licenses
 
@@ -57,6 +64,8 @@ The manifest is generated per browser from `src/manifest.ts`, since Chrome and F
 [English](#shrinkwave) · **中文**
 
 一个合成波（synthwave）配色、Windows 98 风格的浏览器扩展，用来压缩和拼接图片。所有处理都在本地完成，不上传任何文件。
+
+**[官网 · 在线试用 · 下载](https://bambooom.github.io/shrinkwave/)**
 
 ## 功能
 
@@ -94,9 +103,14 @@ npm run build:firefox     # 类型检查 + Firefox 构建到 dist-firefox/
 npm run package:chrome    # 构建并打包为 shrinkwave-chrome.zip
 npm run package:firefox   # 构建并打包为 shrinkwave-firefox.zip
 npm run icons             # 根据 src/brand.ts 重新生成 public/icons/
+npm run site              # 构建两个扩展 + 官网到 site-dist/
+npm run site:dev          # 官网开发服务器（试用区需要先有 dist/）
+npm run site:preview      # 预览 site-dist/
 ```
 
 manifest 由 `src/manifest.ts` 按浏览器分别生成，因为 Chrome 和 Firefox 互相不认对方的侧栏和后台脚本字段。
+
+官网源码在 `site/`。构建时会把 `dist/`、`dist-firefox/` 打包成 zip 放进 `downloads/`，并把 `dist/` 复制到 `app/` 作为在线试用；每次 push 到 `main` 由 GitHub Actions 自动部署到 Pages。
 
 ## 第三方许可
 
