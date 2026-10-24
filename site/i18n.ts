@@ -60,6 +60,7 @@ const en = {
   privacy: "No uploads, no tracking: images are processed with WebAssembly inside your browser.",
   licenses: "Third-party licenses",
   source: "Source on GitHub",
+  releases: "All releases",
 };
 
 export type SiteMessages = typeof en;
@@ -123,6 +124,7 @@ const zhCN: SiteMessages = {
   privacy: "不上传、不追踪：所有图片都在浏览器里用 WebAssembly 处理。",
   licenses: "第三方许可",
   source: "GitHub 源码",
+  releases: "历史版本",
 };
 
 const zhTW: SiteMessages = {
@@ -184,6 +186,7 @@ const zhTW: SiteMessages = {
   privacy: "不上傳、不追蹤：所有圖片都在瀏覽器裡以 WebAssembly 處理。",
   licenses: "第三方授權",
   source: "GitHub 原始碼",
+  releases: "歷史版本",
 };
 
 const ja: SiteMessages = {
@@ -245,6 +248,7 @@ const ja: SiteMessages = {
   privacy: "アップロードなし、トラッキングなし：画像はすべてブラウザ内の WebAssembly で処理されます。",
   licenses: "サードパーティライセンス",
   source: "GitHub のソースコード",
+  releases: "リリース一覧",
 };
 
 export const siteMessages: Record<Locale, SiteMessages> = { "zh-CN": zhCN, "zh-TW": zhTW, en, ja };
