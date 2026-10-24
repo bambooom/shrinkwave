@@ -7,8 +7,9 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
     "package:chrome": "npm run build && cd dist && zip -r ../shrinkwave-chrome.zip .",
-    "package:firefox": "npm run build && cd dist && zip -r ../shrinkwave-firefox.zip .",
-    "icons": "node scripts/icons.ts"
+    "package:firefox": "npm run build:firefox && cd dist-firefox && zip -r ../shrinkwave-firefox.zip .",
+    "icons": "node scripts/icons.ts",
+    "build:firefox": "tsc --noEmit && vite build --mode firefox"
   },
   "dependencies": {
     "@jsquash/avif": "^2.1.1",

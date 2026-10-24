@@ -27,18 +27,22 @@ npm run build
 ```
 
 - **Chrome / Edge**: open `chrome://extensions`, enable Developer mode, click **Load unpacked** and choose `dist/`.
-- **Firefox** (121+): open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on** and choose `dist/manifest.json`.
+- **Firefox** (121+): run `npm run build:firefox`, open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on** and choose `dist-firefox/manifest.json`.
 
-Click the toolbar icon to open Shrinkwave in a tab.
+Click the toolbar icon to open Shrinkwave in the side panel (sidebar in Firefox). The □ button in its title bar pops it out into a tab.
 
 ## Development
 
 ```bash
 npm run dev               # Vite dev server (UI only, no extension APIs)
-npm run build             # type-check + production build to dist/
+npm run build             # type-check + Chrome/Edge build to dist/
+npm run build:firefox     # type-check + Firefox build to dist-firefox/
 npm run package:chrome    # build and zip to shrinkwave-chrome.zip
 npm run package:firefox   # build and zip to shrinkwave-firefox.zip
+npm run icons             # regenerate public/icons/ from src/brand.ts
 ```
+
+The manifest is generated per browser from `src/manifest.ts`, since Chrome and Firefox reject each other's side panel and background keys.
 
 ## Third-party licenses
 
@@ -77,18 +81,22 @@ npm run build
 ```
 
 - **Chrome / Edge**：打开 `chrome://extensions`，开启「开发者模式」，点击「加载已解压的扩展程序」，选择 `dist/`。
-- **Firefox**（121+）：打开 `about:debugging#/runtime/this-firefox`，点击「临时载入附加组件」，选择 `dist/manifest.json`。
+- **Firefox**（121+）：先运行 `npm run build:firefox`，打开 `about:debugging#/runtime/this-firefox`，点击「临时载入附加组件」，选择 `dist-firefox/manifest.json`。
 
-点击工具栏图标即可在新标签页打开 Shrinkwave。
+点击工具栏图标即可在侧边栏（Firefox 为侧栏）打开 Shrinkwave，点标题栏的 □ 按钮可以弹出到标签页。
 
 ## 开发
 
 ```bash
 npm run dev               # Vite 开发服务器（仅界面，无扩展 API）
-npm run build             # 类型检查 + 生产构建到 dist/
+npm run build             # 类型检查 + Chrome/Edge 构建到 dist/
+npm run build:firefox     # 类型检查 + Firefox 构建到 dist-firefox/
 npm run package:chrome    # 构建并打包为 shrinkwave-chrome.zip
 npm run package:firefox   # 构建并打包为 shrinkwave-firefox.zip
+npm run icons             # 根据 src/brand.ts 重新生成 public/icons/
 ```
+
+manifest 由 `src/manifest.ts` 按浏览器分别生成，因为 Chrome 和 Firefox 互相不认对方的侧栏和后台脚本字段。
 
 ## 第三方许可
 
