@@ -87,6 +87,7 @@ const en = {
   working: "Working…",
   progress: (done: number, total: number) => `${done}/${total} done`,
   localOnly: "Runs locally · nothing is uploaded",
+  openInTab: "Open in a tab",
 };
 
 export type Messages = typeof en;
@@ -171,6 +172,7 @@ const zhCN: Messages = {
   working: "处理中…",
   progress: (done, total) => `已完成 ${done}/${total}`,
   localOnly: "本地处理 · 不上传任何文件",
+  openInTab: "在标签页中打开",
 };
 
 const zhTW: Messages = {
@@ -253,6 +255,7 @@ const zhTW: Messages = {
   working: "處理中…",
   progress: (done, total) => `已完成 ${done}/${total}`,
   localOnly: "本機處理 · 不上傳任何檔案",
+  openInTab: "在分頁中開啟",
 };
 
 const ja: Messages = {
@@ -335,6 +338,7 @@ const ja: Messages = {
   working: "処理中…",
   progress: (done, total) => `${done}/${total} 完了`,
   localOnly: "ローカル処理 · アップロードなし",
+  openInTab: "タブで開く",
 };
 
 export const messages: Record<Locale, Messages> = { "zh-CN": zhCN, "zh-TW": zhTW, en, ja };

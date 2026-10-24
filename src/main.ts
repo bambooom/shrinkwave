@@ -51,6 +51,14 @@ function hasEffort(format: OutputFormat): format is EffortFormat {
 }
 
 const app = document.querySelector<HTMLElement>("#app")!;
+// `?view=panel` lets the dev server preview the side panel chrome.
+let inPanel = new URLSearchParams(location.search).get("view") === "panel";
+// Side panels / sidebars aren't tabs, so getCurrent() yields no tab there.
+globalThis.chrome?.tabs?.getCurrent?.((tab) => {
+  if (inPanel === !tab) return;
+  inPanel = !tab;
+  render();
+});
 
 const sunset = ["#7b2ff7", "#b02bd0", "#ff2a9d", "#ff5f73", "#ff9f45", "#ffd23f"];
 const rootStyle = document.documentElement.style;
@@ -363,15 +371,16 @@ async function copyImage(blob: Blob, key: string) {
 }
 
 function flashCopyButton(key: string, ok: boolean) {
-  const button = app.querySelector<HTMLButtonElement>(`[data-copy="${key}"]`);
-  if (!button) return;
   const m = t();
-  button.textContent = ok ? m.copied : m.copyFailed;
-  button.classList.add(ok ? "flash-ok" : "flash-fail");
-  window.setTimeout(() => {
-    button.textContent = m.copy;
-    button.classList.remove("flash-ok", "flash-fail");
-  }, 1500);
+  // The same result can have a copy button both in its row and in the preview head.
+  app.querySelectorAll<HTMLButtonElement>(`[data-copy="${key}"]`).forEach((button) => {
+    button.textContent = ok ? m.copied : m.copyFailed;
+    button.classList.add(ok ? "flash-ok" : "flash-fail");
+    window.setTimeout(() => {
+      button.textContent = m.copy;
+      button.classList.remove("flash-ok", "flash-fail");
+    }, 1500);
+  });
 }
 
 function copyButton(key: string, m: Messages, extra = "") {
@@ -463,7 +472,11 @@ function compressPreview(m: Messages) {
   return previewPanel(
     `<span class="label-chip">${m.preview}</span>
       <span class="preview-name" title="${esc(job.file.name)}">${esc(job.file.name)}</span>
-      <span class="segmented">${modeButton("before", m.colBefore, false)}${modeButton("after", m.colAfter, !job.outputUrl)}</span>`,
+      <span class="segmented">${modeButton("before", m.colBefore, false)}${modeButton("after", m.colAfter, !job.outputUrl)}</span>${
+        job.output
+          ? `<span class="preview-actions">${copyButton(job.id, m, "small")}<button class="small" data-download="${job.id}">${m.save}</button></span>`
+          : ""
+      }`,
     `<img src="${showAfter ? job.outputUrl : job.sourceUrl}" alt="${esc(job.file.name)}" />`,
     meta,
   );
@@ -740,7 +753,11 @@ function render() {
       <header class="title-bar">
         ${toolIcon(state.tool, 16)}
         <span class="title-text">${APP_NAME.toUpperCase().replace(/\s+/g, "")}.EXE — ${label}</span>
-        <span class="title-buttons" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span>
+        <span class="title-buttons">${
+          inPanel
+            ? `<i aria-hidden="true">_</i><button id="pop-out" title="${m.openInTab}" aria-label="${m.openInTab}">□</button><i aria-hidden="true">×</i>`
+            : `<i aria-hidden="true">_</i><i aria-hidden="true">□</i><i aria-hidden="true">×</i>`
+        }</span>
       </header>
       <div class="window-body">
         <div class="tabs" role="tablist">
@@ -795,6 +812,9 @@ function bind() {
   });
   on("[data-locale]", "click", (element) => setLocale(element.dataset.locale as Locale));
   on<HTMLSelectElement>("#locale", "change", (element) => setLocale(element.value as Locale));
+  on("#pop-out", "click", () => {
+    void globalThis.chrome?.runtime?.sendMessage("open-tab");
+  });
   on("#start", "click", () => {
     state.startOpen = !state.startOpen;
     render();

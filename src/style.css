@@ -271,8 +271,12 @@ p {
   gap: 2px;
 }
 
-.title-buttons i {
+.title-buttons i,
+.title-buttons button {
   display: grid;
+  min-width: 0;
+  padding: 0;
+  font: inherit;
   place-items: center;
   width: 18px;
   height: 16px;
@@ -283,8 +287,20 @@ p {
   box-shadow: var(--raised);
 }
 
-.title-buttons i:last-child {
+.title-buttons > :last-child {
   margin-left: 2px;
+}
+
+.title-buttons button {
+  cursor: pointer;
+}
+
+.title-buttons button:hover {
+  color: var(--cyan-light);
+}
+
+.title-buttons button:active {
+  box-shadow: var(--sunken);
 }
 
 .window-body {
@@ -758,6 +774,12 @@ small {
 .segmented {
   display: flex;
   margin-left: auto;
+}
+
+/* Narrow layouts move row copy/save here, for the selected row. */
+.preview-actions {
+  display: none;
+  gap: 2px;
 }
 
 .segmented button.pressed {
@@ -1428,5 +1450,106 @@ td.outdated {
 
   body::before {
     display: none;
+  }
+}
+
+/* Side panel width (~320–520px): edge-to-edge window and a compact list. */
+@media (max-width: 520px) {
+  .desktop {
+    padding: 0 0 44px;
+  }
+
+  .main-window {
+    box-shadow: var(--raised);
+  }
+
+  .window-body {
+    padding: 6px 4px 4px;
+  }
+
+  .group {
+    padding: 8px;
+  }
+
+  .field-row {
+    grid-template-columns: 56px minmax(0, 1fr) 60px;
+    gap: 6px;
+  }
+
+  .advanced-body .note {
+    padding-left: 62px;
+  }
+
+  .check-row input {
+    margin-left: 62px;
+  }
+
+  .list-hint,
+  td.actions > :is([data-copy], [data-download]) {
+    display: none;
+  }
+
+  .preview-actions {
+    display: flex;
+  }
+
+  .preview-head {
+    flex-wrap: wrap;
+  }
+
+  /* Rows become grids so whole columns (#, status) can be dropped. */
+  .list-view table,
+  .list-view thead,
+  .list-view tbody {
+    display: block;
+  }
+
+  .list-view colgroup {
+    display: none;
+  }
+
+  /* Every row is its own grid, so all tracks must be fixed for the header to line up. */
+  .list-view tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 72px 72px 36px;
+  }
+
+  /* Cells stretch to the row height so row backgrounds stay continuous. */
+  .list-view td {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .list-view td.actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .list-view tbody tr.selected td:nth-child(2) {
+    box-shadow: inset 3px 0 var(--cyan);
+  }
+
+  .stitch-grid .list-view tr {
+    grid-template-columns: minmax(0, 1fr) 72px 86px;
+  }
+
+  .list-view :is(th, td):first-child,
+  .queue-area:not(.stitch-grid *) .list-view :is(th, td):nth-child(5) {
+    display: none;
+  }
+
+  .list-view th {
+    align-self: stretch;
+  }
+
+  .list-view .error-row td {
+    grid-column: 1 / -1;
+  }
+
+  .progress-dialog {
+    right: 6px;
+    left: 6px;
   }
 }
