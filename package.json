@@ -10,7 +10,9 @@
     "package:firefox": "npm run build:firefox && cd dist-firefox && zip -r ../shrinkwave-firefox.zip .",
     "icons": "node scripts/icons.ts",
     "build:firefox": "tsc --noEmit && vite build --mode firefox",
-    "site:dev": "vite --config site/vite.config.ts --host 127.0.0.1"
+    "site": "npm run build && npm run build:firefox && vite build --config site/vite.config.ts",
+    "site:dev": "vite --config site/vite.config.ts --host 127.0.0.1",
+    "site:preview": "vite preview --config site/vite.config.ts --host 127.0.0.1"
   },
   "dependencies": {
     "@jsquash/avif": "^2.1.1",
